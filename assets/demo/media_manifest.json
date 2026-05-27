@@ -1,0 +1,49 @@
+﻿{
+    "generated_at":  "2026-05-27T00:20:22.525179+00:00",
+    "app_url":  "http://127.0.0.1:8510",
+    "viewport":  {
+                     "width":  1600,
+                     "height":  900
+                 },
+    "device_scale_factor":  2,
+    "mode":  "SPOTIFY_DEMO_MODE=true",
+    "media":  [
+                  {
+                      "file":  "hero.png",
+                      "bytes":  338870
+                  },
+                  {
+                      "file":  "dashboard.png",
+                      "bytes":  338870
+                  },
+                  {
+                      "file":  "top-content.png",
+                      "bytes":  248399
+                  },
+                  {
+                      "file":  "history.png",
+                      "bytes":  233165
+                  },
+                  {
+                      "file":  "features.png",
+                      "bytes":  308502
+                  },
+                  {
+                      "file":  "workflow.png",
+                      "bytes":  248984
+                  },
+                  {
+                      "file":  "demo.webm",
+                      "bytes":  4094568
+                  },
+                  {
+                      "file":  "demo-poster.png",
+                      "bytes":  338870
+                  },
+                  {
+                      "file":  "demo.gif",
+                      "bytes":  252538
+                  }
+              ],
+    "notes":  "Demo mode uses deterministic sample data. No Spotify credentials, OAuth tokens, or private listening exports are included."
+}

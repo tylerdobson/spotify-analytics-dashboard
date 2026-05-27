@@ -56,7 +56,26 @@ Copy `.env.example` to `.env` locally and use your own Spotify API placeholders.
 ```
 
 ## Demo / Screenshots
-Demo assets will be added in the next release pass.
+Demo assets are generated in public-safe demo mode:
+
+- `assets/demo/hero.png`
+- `assets/demo/dashboard.png`
+- `assets/demo/top-content.png`
+- `assets/demo/history.png`
+- `assets/demo/features.png`
+- `assets/demo/workflow.png`
+- `assets/demo/demo.webm`
+- `assets/demo/demo.gif`
+
+MP4 is not checked in because the available local ffmpeg build only supports the WebM path used by Playwright.
+
+Regenerate them with:
+
+```powershell
+.\.venv\Scripts\python.exe -m playwright install chromium
+$env:SPOTIFY_DEMO_MODE="true"
+.\.venv\Scripts\python.exe scripts\capture_spotify_media.py
+```
 
 ## Security / Privacy Notes
 No Spotify client secrets, OAuth tokens, cache files, or private listening-history exports are included. The public repo is for code review and demo-safe operation.
@@ -64,12 +83,12 @@ No Spotify client secrets, OAuth tokens, cache files, or private listening-histo
 ## Limitations
 - Requires a user-created Spotify developer app for live API use.
 - Does not include private listening history.
-- Demo assets will be added in the next release pass.
+- Demo assets use deterministic sample data, not a personal account export.
 
 ## Roadmap
-- Add synthetic/demo dataset for offline mode.
-- Add screenshots after release verification.
-- Add demo video showing the public-safe workflow.
+- Add richer offline export examples.
+- Add a deployment note only if a real public deployment exists.
+- Keep API limitation notes current as Spotify endpoint access changes.
 
 ## License
 MIT License. See `LICENSE`.

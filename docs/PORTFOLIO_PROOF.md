@@ -2,7 +2,7 @@
 
 This repository includes public-safe validation artifacts generated from demo mode. Demo mode uses deterministic sample data and does not expose private Spotify listening data, credentials, or OAuth tokens.
 
-Finding: In May 2026, my saved Spotify history showed a repeat-listening pattern: the leading artist had 8 plays, and the top repeated track appeared 4 times, turning the raw API feed into a repeat-listening pattern.
+Finding: demo mode keeps the API workflow reviewable without requiring Spotify credentials, OAuth tokens, or private listening-history exports.
 
 ## Validation Assets
 
@@ -11,9 +11,10 @@ Finding: In May 2026, my saved Spotify history showed a repeat-listening pattern
 - Audio features screenshot: `assets/demo/features.png`
 - Playlist workflow screenshot: `assets/demo/workflow.png`
 - Demo video poster: `assets/demo/demo-poster.png`
-- Demo recording: `assets/demo/demo.mp4`
+- Demo recording: `assets/demo/demo.webm`
+- Demo GIF: `assets/demo/demo.gif`
 
-The screenshots are captured from a real Streamlit session at a 1600x900 viewport with device scale factor 2, producing 3200x1800 PNG files for crisp GitHub README rendering. The MP4 demo is generated from the same fresh app captures at 1920x1080.
+The screenshots are captured from a real Streamlit session at a 1600x900 viewport with device scale factor 2, producing 3200x1800 PNG files for crisp GitHub README rendering. The WebM and GIF demo assets are generated from the same public-safe demo path.
 
 ## Verification Performed
 
@@ -38,4 +39,4 @@ npm run capture:media
 
 ## Recruiter-Facing Summary
 
-This project demonstrates a complete analytics workflow: OAuth authentication, API ingestion, local storage, data transformation, visualization, export workflows, and graceful handling of restricted third-party API endpoints.
+This project demonstrates a reviewable analytics workflow: OAuth-aware configuration, API-boundary design, local storage, data transformation, visualization, export workflows, and graceful handling of restricted third-party API endpoints.

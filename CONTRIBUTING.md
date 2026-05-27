@@ -12,5 +12,5 @@ This project is designed to demonstrate real-world data analytics workflows usin
 2. Clone your fork locally:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Spotify-Analytics-.git
-cd Spotify-Analytics-
+git clone https://github.com/YOUR_USERNAME/spotify-analytics-dashboard.git
+cd spotify-analytics-dashboard

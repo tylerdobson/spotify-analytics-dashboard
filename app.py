@@ -81,6 +81,12 @@ def inject_css() -> None:
         [data-testid="stSidebar"] * {
             color: #f5fff7;
         }
+        [data-testid="stToolbar"],
+        [data-testid="stDecoration"],
+        [data-testid="stStatusWidget"],
+        #MainMenu {
+            display: none !important;
+        }
         .app-title {
             display: flex;
             align-items: center;
