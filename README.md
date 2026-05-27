@@ -1,12 +1,12 @@
 # Spotify Analytics Dashboard
 
-Streamlit dashboard for Spotify-style listening analytics, playlist review, feature exploration, and credential-safe API workflow design. The public release includes deterministic demo mode so reviewers can inspect the app without Spotify credentials or private listening exports.
+Streamlit dashboard for Spotify-style listening analytics, playlist review, feature exploration, and credential-safe API workflow design. The release includes deterministic demo mode so reviewers can inspect the app without Spotify credentials or private listening exports.
 
 - Validation notes: [`docs/PORTFOLIO_PROOF.md`](docs/PORTFOLIO_PROOF.md)
 
 ## Overview
 
-Spotify projects can accidentally mix live OAuth credentials, cached tokens, private listening history, and public code. This repo separates those concerns. It keeps live API configuration local, excludes token/cache files, and ships a demo-mode path for public review.
+Spotify projects can accidentally mix live OAuth credentials, cached tokens, private listening history, and repository code. This repo separates those concerns. It keeps live API configuration local, excludes token/cache files, and ships a demo-mode path for reviewer inspection.
 
 ## Problem
 
@@ -19,7 +19,7 @@ An analytics dashboard is not portfolio-safe if it requires private account data
 - Local data-processing and visualization modules.
 - Demo mode that renders deterministic sample data.
 - Unit tests around data-processing behavior.
-- Public-safe screenshots generated from deterministic demo mode.
+- Review-safe screenshots generated from deterministic demo mode.
 
 ## Evidence
 
@@ -33,7 +33,7 @@ An analytics dashboard is not portfolio-safe if it requires private account data
 
 ## Demo / Screenshots
 
-All public screenshots use `SPOTIFY_DEMO_MODE=true`.
+All screenshots use `SPOTIFY_DEMO_MODE=true`.
 
 ![Spotify analytics dashboard](assets/demo/dashboard.png)
 
@@ -74,13 +74,13 @@ data_processor.py              Data transformation helpers
 visualizations.py              Plotly chart builders
 oauth_callback_capture.py      Local OAuth callback helper
 tests/                         Data-processing tests
-assets/demo/                   Public-safe screenshots
+assets/demo/                   Review-safe screenshots
 docs/                          Validation notes
 ```
 
 ## Data Source
 
-Live use depends on a locally authenticated Spotify developer app and the account used by the reviewer. Public demo mode uses deterministic sample data and does not redistribute private account exports.
+Live use depends on a locally authenticated Spotify developer app and the account used by the reviewer. Demo mode uses deterministic sample data and does not redistribute private account exports.
 
 ## Environment Variables
 
@@ -125,7 +125,7 @@ Live local API mode:
 ## Limitations
 
 - Live behavior depends on Spotify API access and the reviewer's local credentials.
-- Public demo mode is for workflow review, not a claim about a real user's listening history.
+- Demo mode is for workflow review, not a claim about a real user's listening history.
 - This is not an official Spotify product.
 
 ## Roadmap

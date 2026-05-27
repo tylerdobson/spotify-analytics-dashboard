@@ -1,6 +1,6 @@
 # Validation Notes
 
-This repository includes public-safe validation artifacts generated from demo mode. Demo mode uses deterministic sample data and does not expose private Spotify listening data, credentials, or OAuth tokens.
+This repository includes review-safe validation artifacts generated from demo mode. Demo mode uses deterministic sample data and does not expose private Spotify listening data, credentials, or OAuth tokens.
 
 Finding: demo mode keeps the API workflow reviewable without requiring Spotify credentials, OAuth tokens, or private listening-history exports.
 
@@ -23,7 +23,7 @@ The screenshots are captured from a real Streamlit session at a 1600x900 viewpor
 - Demo-mode dashboard rendered without Spotify credentials.
 - Python files compiled successfully.
 - Data-processing tests passed.
-- Public validation artifacts do not expose private Spotify listening data or OAuth tokens.
+- Validation artifacts do not expose private Spotify listening data or OAuth tokens.
 
 ## Local Validation Commands
 

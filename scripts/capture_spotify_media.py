@@ -1,4 +1,4 @@
-"""Capture public-safe media for the Spotify Analytics dashboard.
+"""Capture review-safe media for the Spotify Analytics dashboard.
 
 The script runs Streamlit in demo mode, captures screenshots, and writes a
 media manifest. It does not require Spotify credentials and does not use private

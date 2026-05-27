@@ -653,7 +653,7 @@ def playlists_page(client: SpotifyClient) -> None:
         mood = st.selectbox("Mood/activity", list(MOOD_FILTERS.keys()))
         st.caption(MOOD_FILTERS[mood]["description"])
         name = st.text_input("Playlist name", value=f"My {mood} Mix")
-        public = st.toggle("Make playlist public", value=False)
+        make_visible = st.toggle("Make playlist visible on Spotify", value=False)
         top_tracks = client.get_top_tracks(limit=50)
         features = get_features_for_tracks(client, top_tracks)
         if features.empty:
@@ -667,7 +667,7 @@ def playlists_page(client: SpotifyClient) -> None:
                     name=name,
                     description=f"Generated from Spotify Analytics using the {mood.lower()} filter.",
                     track_ids=candidates["id"].tolist(),
-                    public=public,
+                    public=make_visible,
                 )
                 if playlist:
                     st.success(f"Created playlist: {playlist['name']}")
