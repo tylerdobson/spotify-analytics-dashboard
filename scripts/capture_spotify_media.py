@@ -1,8 +1,8 @@
 """Capture public-safe media for the Spotify Analytics dashboard.
 
-The script runs Streamlit in demo mode, captures screenshots and a short WebM
-walkthrough, and writes a media manifest. It does not require Spotify
-credentials and does not use private listening history.
+The script runs Streamlit in demo mode, captures screenshots, and writes a
+media manifest. It does not require Spotify credentials and does not use private
+listening history.
 """
 
 from __future__ import annotations
@@ -24,7 +24,6 @@ MEDIA_DIR = PROJECT_ROOT / "assets" / "demo"
 PORT = 8510
 BASE_URL = f"http://127.0.0.1:{PORT}"
 VIEWPORT = {"width": 1600, "height": 900}
-VIDEO_SIZE = {"width": 1600, "height": 900}
 
 PAGES = [
     ("hero.png", "Home", "Spotify Analytics"),
@@ -46,7 +45,7 @@ def main() -> int:
         _write_manifest(media)
     finally:
         _stop_process(process)
-    print(f"Media capture complete: {MEDIA_DIR}")
+    print(f"Screenshot capture complete: {MEDIA_DIR}")
     return 0
 
 
@@ -124,11 +123,8 @@ def _capture_media() -> list[dict[str, str | int]]:
         context = browser.new_context(
             viewport=VIEWPORT,
             device_scale_factor=2,
-            record_video_dir=str(MEDIA_DIR),
-            record_video_size=VIDEO_SIZE,
         )
         page = context.new_page()
-        video = page.video
 
         _open_page(page, "Home", "Spotify Analytics")
         _click_if_present(page, "Sync last 50 plays to database")
@@ -140,28 +136,12 @@ def _capture_media() -> list[dict[str, str | int]]:
             _assert_non_empty(path)
             captured.append({"file": filename, "bytes": path.stat().st_size})
 
-        for _, label, expected_text in PAGES:
-            _open_page(page, label, expected_text)
-            page.wait_for_timeout(1600)
-
         context.close()
         browser.close()
-
-        webm_path = MEDIA_DIR / "demo.webm"
-        if video:
-            recorded_path = Path(video.path())
-            if webm_path.exists():
-                webm_path.unlink()
-            shutil.move(str(recorded_path), webm_path)
-            _assert_non_empty(webm_path)
-            captured.append({"file": "demo.webm", "bytes": webm_path.stat().st_size})
 
         poster = MEDIA_DIR / "demo-poster.png"
         shutil.copyfile(MEDIA_DIR / "hero.png", poster)
         captured.append({"file": "demo-poster.png", "bytes": poster.stat().st_size})
-
-        _convert_to_mp4_if_available(webm_path, captured)
-        _convert_to_gif_if_available(webm_path, captured)
 
     return captured
 
@@ -185,40 +165,6 @@ def _click_if_present(page, label: str) -> None:
 def _assert_non_empty(path: Path) -> None:
     if not path.exists() or path.stat().st_size < 10_000:
         raise SystemExit(f"Expected media file was missing or too small: {path}")
-
-
-def _convert_to_mp4_if_available(webm_path: Path, captured: list[dict[str, str | int]]) -> None:
-    _run_ffmpeg(webm_path, MEDIA_DIR / "demo.mp4", captured, ["-movflags", "+faststart", "-pix_fmt", "yuv420p"])
-
-
-def _convert_to_gif_if_available(webm_path: Path, captured: list[dict[str, str | int]]) -> None:
-    _run_ffmpeg(
-        webm_path,
-        MEDIA_DIR / "demo.gif",
-        captured,
-        ["-vf", "fps=8,scale=960:-1:flags=lanczos", "-loop", "0"],
-    )
-
-
-def _run_ffmpeg(
-    source: Path,
-    target: Path,
-    captured: list[dict[str, str | int]],
-    args: list[str],
-) -> None:
-    if not source.exists():
-        return
-    ffmpeg = shutil.which("ffmpeg")
-    if not ffmpeg:
-        return
-    command = [ffmpeg, "-y", "-i", str(source), *args, str(target)]
-    result = subprocess.run(command, capture_output=True, text=True)
-    if result.returncode != 0:
-        print(f"ffmpeg conversion failed for {target.name}; keeping WebM only.")
-        print(result.stderr)
-        return
-    _assert_non_empty(target)
-    captured.append({"file": target.name, "bytes": target.stat().st_size})
 
 
 def _write_manifest(media: list[dict[str, str | int]]) -> None:

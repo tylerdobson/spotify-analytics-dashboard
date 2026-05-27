@@ -33,20 +33,8 @@
                       "bytes":  248984
                   },
                   {
-                      "file":  "demo.webm",
-                      "bytes":  4094568
-                  },
-                  {
                       "file":  "demo-poster.png",
                       "bytes":  338870
-                  },
-                  {
-                      "file":  "demo.gif",
-                      "bytes":  252538
-                  },
-                  {
-                      "file":  "narrated-demo.mp4",
-                      "bytes":  772583
                   }
               ],
     "notes":  "Demo mode uses deterministic sample data. No Spotify credentials, OAuth tokens, or private listening exports are included."

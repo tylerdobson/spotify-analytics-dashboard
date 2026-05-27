@@ -2,7 +2,6 @@
 
 Streamlit dashboard for Spotify-style listening analytics, playlist review, feature exploration, and credential-safe API workflow design. The public release includes deterministic demo mode so reviewers can inspect the app without Spotify credentials or private listening exports.
 
-- Narrated walkthrough: [`assets/demo/narrated-demo.mp4`](assets/demo/narrated-demo.mp4)
 - Validation notes: [`docs/PORTFOLIO_PROOF.md`](docs/PORTFOLIO_PROOF.md)
 
 ## Overview
@@ -20,7 +19,7 @@ An analytics dashboard is not portfolio-safe if it requires private account data
 - Local data-processing and visualization modules.
 - Demo mode that renders deterministic sample data.
 - Unit tests around data-processing behavior.
-- Public-safe screenshot, WebM, GIF, and narrated MP4 demo assets.
+- Public-safe screenshots generated from deterministic demo mode.
 
 ## Evidence
 
@@ -29,12 +28,12 @@ An analytics dashboard is not portfolio-safe if it requires private account data
 | Demo-mode validation | [`docs/PORTFOLIO_PROOF.md`](docs/PORTFOLIO_PROOF.md) |
 | Tests | [`tests/`](tests/) |
 | Environment placeholder | [`.env.example`](.env.example) |
-| Demo media manifest | [`assets/demo/media_manifest.json`](assets/demo/media_manifest.json) |
-| Demo assets | [`assets/demo/`](assets/demo/) |
+| Screenshot manifest | [`assets/demo/media_manifest.json`](assets/demo/media_manifest.json) |
+| Screenshot assets | [`assets/demo/`](assets/demo/) |
 
 ## Demo / Screenshots
 
-All public demo media uses `SPOTIFY_DEMO_MODE=true`.
+All public screenshots use `SPOTIFY_DEMO_MODE=true`.
 
 ![Spotify analytics dashboard](assets/demo/dashboard.png)
 
@@ -44,11 +43,9 @@ Additional captures:
 - [`assets/demo/history.png`](assets/demo/history.png)
 - [`assets/demo/features.png`](assets/demo/features.png)
 - [`assets/demo/workflow.png`](assets/demo/workflow.png)
-- [`assets/demo/demo.webm`](assets/demo/demo.webm)
-- [`assets/demo/demo.gif`](assets/demo/demo.gif)
-- [`assets/demo/narrated-demo.mp4`](assets/demo/narrated-demo.mp4)
+- [`assets/demo/demo-poster.png`](assets/demo/demo-poster.png)
 
-Regenerate media:
+Regenerate screenshots:
 
 ```powershell
 .\.venv\Scripts\python.exe -m playwright install chromium
@@ -65,7 +62,7 @@ $env:SPOTIFY_DEMO_MODE="true"
 - Plotly
 - SQLite/local persistence path
 - pytest
-- Playwright media capture
+- Playwright screenshot capture
 
 ## Architecture
 
@@ -77,7 +74,7 @@ data_processor.py              Data transformation helpers
 visualizations.py              Plotly chart builders
 oauth_callback_capture.py      Local OAuth callback helper
 tests/                         Data-processing tests
-assets/demo/                   Public-safe media
+assets/demo/                   Public-safe screenshots
 docs/                          Validation notes
 ```
 
@@ -122,7 +119,7 @@ Live local API mode:
 - No Spotify client secrets are included.
 - No OAuth tokens or cache files are included.
 - No private listening-history exports are included.
-- Demo assets are generated from deterministic sample data.
+- Screenshots are generated from deterministic sample data.
 - The repo does not include AI model calls.
 
 ## Limitations
